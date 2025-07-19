@@ -18,7 +18,7 @@ setup(
     zip_safe=True,
     maintainer='banana-killer',
     maintainer_email='sashagrachev2005@gmail.com',
-    description='a package with python launcher files\
+    description='A package with python launcher files\
                 for running different node configurations for teleoperation',
     license='TODO: License declaration',
     tests_require=['pytest'],

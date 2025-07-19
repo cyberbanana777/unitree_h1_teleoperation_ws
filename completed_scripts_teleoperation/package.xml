@@ -3,7 +3,7 @@
 <package format="3">
   <name>completed_scripts_teleoperation</name>
   <version>1.0.0</version>
-  <description>a package with python launcher files 
+  <description>A package with python launcher files 
     for running different node configurations for teleoperation
   </description>
   <maintainer email="sashagrachev2005@gmail.com">banana-killer</maintainer>
