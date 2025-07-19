@@ -2,10 +2,9 @@
 
 '''
 АННОТАЦИЯ
-Данный код представляет собой ROS2-ноду (ConverterNode), которая преобразует
-данные о положении суставов из формата от копирующего устройства от робота
-Fedor в формат, совместимый с роботом Unitree H1. Нода подписывается на топик
-Fedor_bare_data, получает JSON-данные, конвертирует углы суставов с учетом
+ROS2-нода для конвертации данных суставов из формата робота FEDOR в формат Unitree H1. 
+Нода подписывается на топикFedor_bare_data, получает JSON-данные, 
+конвертирует углы суставов с учетом
 ограничений каждого сочленения и публикует результат в топик
 positions_to_unitree с частотой 333.3 Гц. Особенностью является плавное
 снижение коэффициента влияния (impact) при завершении работы, что обеспечивает
@@ -20,10 +19,9 @@ LIMITS_OF_JOINTS_* для сопоставления суставов и их д
 
 '''
 ANNOTATION
-This code is a ROS2 node (ConverterNode) that converts
-the joint position data from the Fedor robot copier format to a format
-compatible with the Unitree H1 robot. The node subscribes to the
-Fedor_bare_data topic, receives JSON data, converts the joint angles taking
+ROS2 node for converting joint data from FEDOR robot format to Unitree H1 format. 
+The node subscribes to theFedor_bare_data topic, receives JSON data, 
+converts the joint angles taking
 into account the limits of each joint, and publishes the result to the
 positions_to_unitree topic at a frequency of 333.3 Hz. A special feature is a
 smooth decrease in the impact coefficient at the end of the work, which ensures
@@ -52,7 +50,7 @@ TRANSLATER_FOR_JOINTS_FROM_FEDOR_TO_UNITREE_H1 = {
     1: 17,  # L.ShoulderS -> left_shoulder_pitch_joint
     2: 18,  # L.ElbowR -> left_shoulder_yaw_joint
     3: 19,  # L.Elbow -> left_elbow_joint
-    4: None,  # L.WristR
+    4: 32,  # L.WristR
     5: None,  # L.WristS
     6: None,  # L.WristF
     7: 29,  # L.Finger.Index
@@ -65,7 +63,7 @@ TRANSLATER_FOR_JOINTS_FROM_FEDOR_TO_UNITREE_H1 = {
     14: 13,  # R.ShoulderS -> right_shoulder_pitch_joint
     15: 14,  # R.ElbowR -> right_shoulder_yaw_joint
     16: 15,  # R.Elbow -> right_elbow_joint
-    17: None,  # R.WristR
+    17: 33,  # R.WristR
     18: None,  # R.WristS
     19: None,  # R.WristF
     20: 23,  # R.Finger.Index
@@ -108,7 +106,10 @@ LIMITS_OF_JOINTS_UNITREE_H1 = {
     28: [0.0, 1.0],  # left_middle
     29: [0.0, 1.0],  # left_index
     30: [0.0, 1.0],  # left_thumb-bend
-    31: [0.0, 1.0]  # left_thumb-rotation
+    31: [0.0, 1.0],  # left_thumb-rotation
+    32: [-1.1, 4.58],  # left_wrist
+    33: [-6.0, -0.23]  # right_wrist
+    
 }
 
 LIMITS_OF_JOINTS_FEDOR = {
@@ -236,17 +237,17 @@ class ConverterNode(Node):
         self.get_logger().debug(f'data = {(self.last_data)}')
         self.publisher.publish(self.msg)
 
-    def return_control(self):
-        if self.last_data is not None:
-            steps = self.time_for_return_control / self.control_dt
-            value_of_step = 1.0 / steps
-            for _ in range(int(steps) + 1):
-                self.impact -= value_of_step
-                self.impact = np.clip(self.impact, 0.0, 1.0)
-                self.msg.data = self.last_data + \
-                    '$' + str(round(self.impact, 3))
-                self.get_logger().info(f'Impact = {round(self.impact, 3)}')
-                self.publisher.publish(self.msg)
+    # def return_control(self):
+    #     if self.last_data is not None:
+    #         steps = self.time_for_return_control / self.control_dt
+    #         value_of_step = 1.0 / steps
+    #         for _ in range(int(steps) + 1):
+    #             self.impact -= value_of_step
+    #             self.impact = np.clip(self.impact, 0.0, 1.0)
+    #             self.msg.data = self.last_data + \
+    #                 '$' + str(round(self.impact, 3))
+    #             self.get_logger().info(f'Impact = {round(self.impact, 3)}')
+    #             self.publisher.publish(self.msg)
 
 
 def main(args=None):
@@ -264,7 +265,7 @@ def main(args=None):
         node.get_logger().error(e)
 
     finally:
-        node.return_control()
+        # node.return_control()
         node.get_logger().info('Node stoped.')
         node.destroy_node()
         rclpy.shutdown()

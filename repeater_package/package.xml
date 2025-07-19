@@ -3,10 +3,11 @@
 <package format="3">
   <name>repeater_package</name>
   <version>1.0.0</version>
-  <description>This ROS2 node (UDPRepeaterNode) accepts JSON data via a UDP
-        socket and publishes it to the topic "Fedor_bare_data" at a frequency
-        of 333.3 Hz.</description>
-  <maintainer email="sashagrachev@gmail.com">banana-killer</maintainer>
+  <description>
+    ROS2 node for receiving UDP packets with JSON data and 
+    retransmitting them to a ROS2 topic.
+  </description>
+  <maintainer email="sashagrachev2005@gmail.com">banana-killer</maintainer>
   <license>TODO: License declaration</license>
 
   <depend>rclpy</depend>

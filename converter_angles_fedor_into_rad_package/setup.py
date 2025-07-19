@@ -15,10 +15,9 @@ setup(
     zip_safe=True,
     maintainer='banana-killer',
     maintainer_email='sashagrachev2005@gmail.com',
-    description='The node listens to bare_data, converts the copier joint \
-        values ​​from the FEDOR robot to radians via the given mappings, and\
-        publishes to Fedor_data_rad. Runs at 333.3 Hz for real time.',
-    license='TODO: License declaration',
+    description='The ROS2 node converts the raw joint data of the FEDOR robot\
+                with a specified scaling factor (0.1 by default)\
+                from the Fedor_bare_data topic to radians.',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [

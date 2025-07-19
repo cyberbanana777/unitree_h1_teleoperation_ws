@@ -15,11 +15,8 @@ setup(
     zip_safe=True,
     maintainer='banana-killer',
     maintainer_email='sashagrachev2005@gmail.com',
-    description='ROS2 node for monitoring and comparing joint angles between \
-        Fedor device and Unitree H1 robot. Subscribes to Fedor data(JSON) \
-        and H1 motor states, publishes selected joint values for PlotJuggler\
-        visualization. Supports joint selection via H1_joint_num parameter.',
-    license='TODO: License declaration',
+    description='ROS2 node for matching and publishing angles from the Unitree H1 robot\
+                and from the Fedor copier device of the selected joint',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [

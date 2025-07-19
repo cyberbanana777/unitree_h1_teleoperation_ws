@@ -1,57 +1,63 @@
 #!/usr/bin/env python3
 
-'''
+"""
 АННОТАЦИЯ
-Данный код реализует ROS2-ноду для синхронизации и мониторинга суставов робота
-Unitree H1 с копирующим устройством Fedor. Нода подписывается на три типа 
-сообщений: сырые данные с Fedor в формате JSON, состояния моторов и 
-низкоуровневые показатели H1. Основная функция - сопоставление и публикация 
-углов выбранного сустава в отдельные топики для визуализации в PlotJuggler. 
-Реализована поддержка как основных суставов (плечи, локти), так и суставов 
-кисти. Номер отслеживаемого сустава настраивается через параметр H1_joint_num. 
-Работает на высокой частоте 333.3 Гц для точного сравнения показаний.
-'''
+ROS2-нода для сопоставления и публикации углов с робота Unitree H1
+и с копирующего устройства Fedor выбранного сочленения. Подписывается на топики с данными Федора в радианах
+(Fedor_data_rad), состояниями моторов Inspare hand (inspire/state) и низкоуровневыми
+показателями h1 (lowstate). Публикует значения выбранного сустава в топики
+plotjuggler/joint_*/{fedor,h1} для визуализации. Поддерживает настройку
+отслеживаемого сустава через параметр H1_joint_num. Работает на частоте
+333.3 Гц для точного сравнения показаний. Основная функция - сопоставление и публикация 
+углов выбранного сустава в отдельные топики для визуализации в PlotJuggler.
 
-'''
 ANNOTATION
-This code implements a ROS2 node for synchronization and monitoring of Unitree
-H1 robot joints with Fedor master device. The node subscribes to three message
-types: raw JSON data from Fedor, motor states and low-level H1 metrics. Core
+ROS2 node for matching and publishing angles from the Unitree H1 robot
+and from the Fedor copier device of the selected joint. 
+Subscribes to Fedor data in rad (Fedor_data_rad), motor states Inspare hand 
+(inspire/state) and low-level metrics h1 (lowstate) topics. Publishes selected
+joint values to plotjuggler/joint_*/{fedor,h1} topics for visualization.
+Supports joint selection via H1_joint_num parameter. Operates at 333.3 Hz
+for precise measurements comparison. Core
 functionality includes matching and publishing selected joint angles to 
-separate topics for PlotJuggler visualization. Supports both main joints 
-(shoulders, elbows) and hand joints. Target joint can be configured via 
-H1_joint_num parameter. Operates at high frequency of 333.3 Hz for precise 
-measurements comparison.
-'''
+separate topics for PlotJuggler visualization.
+"""
 
-from unitree_go.msg import LowState
-from unitree_go.msg import MotorStates
-from std_msgs.msg import Float32
-from std_msgs.msg import String
+from unitree_go.msg import LowState, MotorStates
+from std_msgs.msg import Float32, String
 from rclpy.node import Node
 import rclpy
 import json
 
 
+# ==================== CONSTANTS ====================
 TOPIC_PUBLISH_GROUP = "plotjuggler/joint_"
 TOPIC_SUBSCRIBE = "Fedor_data_rad"
-FREQUENCY = 333.3  # Частота мониторинга в Герцах
+FREQUENCY = 333.3  # Monitoring frequency in Hz
 
-TRANSLATER_FOR_JOINTS_UNITREE_H1_TO_FEDOR = {
-    16: 0,   # left_shoulder_roll_joint -> L.ShoulderF
-    17: 1,   # left_shoulder_pitch_joint -> L.ShoulderS
-    18: 2,   # left_shoulder_yaw_joint -> L.ElbowR
-    19: 3,   # left_elbow_joint -> L.Elbow
+# Joint mapping between Unitree H1 and Fedor
+JOINT_MAPPING_H1_TO_FEDOR = {
+    # Left Arm
+    16: 0,   # left_shoulder_roll_joint → L.ShoulderF
+    17: 1,   # left_shoulder_pitch_joint → L.ShoulderS
+    18: 2,   # left_shoulder_yaw_joint → L.ElbowR
+    19: 3,   # left_elbow_joint → L.Elbow
+    
+    # Left Hand
     29: 7,   # L.Finger.Index
     26: 8,   # L.Finger.Little
     28: 9,   # L.Finger.Middle
     27: 10,  # L.Finger.Ring
     31: 11,  # L.Finger.Thumb
     30: 12,  # L.Finger.Thumbs
-    12: 13,  # right_shoulder_roll_joint -> R.ShoulderF
-    13: 14,  # right_shoulder_pitch_joint -> R.ShoulderS
-    14: 15,  # right_shoulder_yaw_joint -> R.ElbowR
-    15: 16,  # right_elbow_joint -> R.Elbow
+    
+    # Right Arm
+    12: 13,  # right_shoulder_roll_joint → R.ShoulderF
+    13: 14,  # right_shoulder_pitch_joint → R.ShoulderS
+    14: 15,  # right_shoulder_yaw_joint → R.ElbowR
+    15: 16,  # right_elbow_joint → R.Elbow
+    
+    # Right Hand
     23: 20,  # R.Finger.Index
     20: 21,  # R.Finger.Little
     22: 22,  # R.Finger.Middle
@@ -61,144 +67,122 @@ TRANSLATER_FOR_JOINTS_UNITREE_H1_TO_FEDOR = {
 }
 
 
-class ExtractorNode(Node):
-    """
-    ROS2 нода для выбора joint unitree H1 и публикации соответсвенного 
-    значения, идущего с копирующего устройства
-    """
-
+class JointMonitorNode(Node):
+    """ROS2 node for monitoring and comparing joint angles between Unitree H1 and Fedor."""
+    
     def __init__(self):
-        super().__init__("extractor_node")
+        super().__init__("joint_monitor_node")
 
-        self.impact = 1.0
-        self.time_for_return_control = 8.0
+        # Initialize variables
+        self.joint_fedor_angle = 0.0
+        self.joint_h1_angle = 0.0
         self.control_dt = 1 / FREQUENCY
-        self.joint_Fedor_angle_value = 0.0
-        self.H1_joint_angle_value = 0.0
 
-        # Объявление параметра со значением по умолчанию
-        self.declare_parameter('H1_joint_num', 16)
+        # Declare and get joint number parameter
+        self.declare_parameter('H1_joint_num', 16)  # Default: left_shoulder_roll
+        self.joint_num = self.get_parameter('H1_joint_num').value
+        self.get_logger().info(f"Monitoring joint number: {self.joint_num}")
 
-        # Получение значения параметра
-        self.H1_joint_num_value = self.get_parameter('H1_joint_num').value
-        self.get_logger().info(
-            f'Parameter "H1_joint_num" value: {self.H1_joint_num_value}')
-
-        self.create_timer(self.control_dt, self.timer_callback)
-
-        # Публикация угла выбранного джоинта Федор
-        self.publisher_fedor = self.create_publisher(
+        # Setup publishers
+        self.pub_fedor = self.create_publisher(
             Float32,
-            TOPIC_PUBLISH_GROUP + str(self.H1_joint_num_value) + '/fedor',
+            f"{TOPIC_PUBLISH_GROUP}{self.joint_num}/fedor",
+            10
+        )
+        self.pub_h1 = self.create_publisher(
+            Float32,
+            f"{TOPIC_PUBLISH_GROUP}{self.joint_num}/h1",
             10
         )
 
-        # Публикация угла выбранного джоинта H1
-        self.publisher_H1 = self.create_publisher(
-            Float32,
-            TOPIC_PUBLISH_GROUP + str(self.H1_joint_num_value) + '/h1',
-            10
-        )
-
-        # Создание объекта сообщения для публикации
-        self.msg_float = Float32()
-
-        # Подписка на топик, в который публикуется информацию об углах поворота звеньев копирующего устройства в радианах
-        self.subscription_LowCmd = self.create_subscription(
+        # Setup subscribers
+        self.sub_fedor = self.create_subscription(
             String,
             TOPIC_SUBSCRIBE,
-            self.listener_Fedor_data_rad,
+            self.fedor_data_callback,
             10
         )
-
-        # Подписка на топик, в который публикуется информацию об степени сжаия пальцев H1
-        self.subscription_state = self.create_subscription(
+        self.sub_states = self.create_subscription(
             MotorStates,
             'inspire/state',
-            self.listener_callback_states,
+            self.h1_states_callback,
             10
         )
-
-        # подписка на топик, в который публикуется информация о углах поворота звеньев H1
-        self.subscription_LowCmd = self.create_subscription(
+        self.sub_lowstate = self.create_subscription(
             LowState,
             'lowstate',
-            self.listener_callback_LowCmd,
+            self.h1_lowstate_callback,
             10
         )
 
-    def timer_callback(self):
-        """Публикация угла выбранного джоинта в радианах"""
-        msg_float = Float32()
-        msg_float.data = float(self.joint_Fedor_angle_value)
-        self.publisher_fedor.publish(msg_float)
+        # Create timer for publishing
+        self.create_timer(self.control_dt, self.publish_joint_data)
 
-        msg_float = Float32()
-        msg_float.data = float(self.H1_joint_angle_value)
-        self.publisher_H1.publish(msg_float)
+    def publish_joint_data(self):
+        """Publish current joint angles from both systems."""
+        fedor_msg = Float32()
+        fedor_msg.data = float(self.joint_fedor_angle)
+        self.pub_fedor.publish(fedor_msg)
 
-        # self.get_logger().info(f'Tracking joint: {self.H1_joint_num_value}')
+        h1_msg = Float32()
+        h1_msg.data = float(self.joint_h1_angle)
+        self.pub_h1.publish(h1_msg)
 
-    def listener_Fedor_data_rad(self, msg):
-        """Получение угла выбранного джоинта в радианах"""
-        data = json.loads(msg.data)
-        joint_fedor = TRANSLATER_FOR_JOINTS_UNITREE_H1_TO_FEDOR[self.H1_joint_num_value]
+    def fedor_data_callback(self, msg):
+        """Handle incoming joint data from Fedor device."""
+        try:
+            data = json.loads(msg.data)
+            fedor_joint_num = JOINT_MAPPING_H1_TO_FEDOR[self.joint_num]
+            
+            if str(fedor_joint_num) not in data:
+                self.get_logger().warning(
+                    f"Joint {fedor_joint_num} not found in Fedor data")
+                return
+                
+            self.joint_fedor_angle = data[str(fedor_joint_num)]
+            self.get_logger().debug(f"Fedor joint angle: {self.joint_fedor_angle}")
+            
+        except json.JSONDecodeError:
+            self.get_logger().error("Invalid JSON data received from Fedor")
+        except KeyError as e:
+            self.get_logger().error(f"Joint mapping error: {str(e)}")
 
-        # data_to_send = data['slaves'][joint_fedor]['target']
-        # self.get_logger().info(f'{data_to_send}')
-
-        if str(joint_fedor) not in data:
-            self.get_logger().warn(
-                f"Joint {joint_fedor} not found in incoming data")
-            return
-
-        self.joint_Fedor_angle_value = data[str(joint_fedor)]
-        self.get_logger().debug(f'{self.joint_Fedor_angle_value}')
-
-    def listener_callback_LowCmd(self, msg):
-        """Получение угла выбранного джоинта H1"""
-        if self.H1_joint_num_value < 20:
+    def h1_lowstate_callback(self, msg):
+        """Handle low-level joint states from Unitree H1 (main joints)."""
+        if self.joint_num < 20:  # Main joints (0-19)
             try:
-                self.H1_joint_angle_value = msg.motor_state[self.H1_joint_num_value].q
-                self.get_logger().debug(f'{self.H1_joint_angle_value}')
-            except Exception as e:
-                self.get_logger().warn(
-                    f"Joint {self.H1_joint_num_value} not found in incoming data")
-        else:
-            return
+                self.joint_h1_angle = msg.motor_state[self.joint_num].q
+                self.get_logger().debug(f"H1 joint angle: {self.joint_h1_angle}")
+            except IndexError:
+                self.get_logger().warning(
+                    f"Joint {self.joint_num} not found in H1 lowstate")
 
-    def listener_callback_states(self, msg):
-        """Получение угла выбранного джоинта кисти H1"""
-        if self.H1_joint_num_value >= 20:
+    def h1_states_callback(self, msg):
+        """Handle motor states from Unitree H1 (hand joints)."""
+        if self.joint_num >= 20:  # Hand joints (20+)
             try:
-                self.H1_joint_angle_value = msg.states[self.H1_joint_num_value - 20].q
-                self.get_logger().debug(f'{self.H1_joint_angle_value}')
-            except Exception as e:
-                self.get_logger().warn(
-                    f"Joint {self.H1_joint_num_value} not found in incoming data")
-        else:
-            return
+                self.joint_h1_angle = msg.states[self.joint_num - 20].q
+                self.get_logger().debug(f"H1 hand joint angle: {self.joint_h1_angle}")
+            except IndexError:
+                self.get_logger().warning(
+                    f"Hand joint {self.joint_num} not found in H1 states")
 
 
 def main(args=None):
-    """Основная функция для запуска ноды."""
+    """Main entry point for the joint monitor node."""
     rclpy.init(args=args)
-    node = ExtractorNode()
+    node = JointMonitorNode()
 
     try:
         rclpy.spin(node)
-
     except KeyboardInterrupt:
-        node.get_logger().info('Stop node.')
-
+        node.get_logger().info("Node stopped by user")
     except Exception as e:
-        node.get_logger().error(str(e))
-
+        node.get_logger().error(f"Node error: {str(e)}")
     finally:
-        node.get_logger().info('Node stoped.')
         node.destroy_node()
         rclpy.shutdown()
 
 
 if __name__ == '__main__':
-    main(args=None)
+    main()
