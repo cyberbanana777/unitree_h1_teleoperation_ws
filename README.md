@@ -20,7 +20,7 @@ mkdir -p unitree_h1_teleoperation_ws/src
 cd unitree_h1_teleoperation_ws/src
 git clone https://github.com/cyberbanana777/unitree_h1_teleoperation_ws.git .
 ```
-2.  2. **Установить проприетарные зависимости** (по ссылкам инструкции по установке от производителя): 
+2. **Установить проприетарные зависимости** (по ссылкам инструкции по установке от производителя): 
 -   [unitree_sdk2py](https://github.com/unitreerobotics/unitree_sdk2_python) При установке данного пакета нужно выполнить инструкции из `Installing from source` и установить пакет из исходников, т.к. там программа новее, чем представлена в pip. Для корректной работы перед установкой нужно изменить 1 файл в данном пакете. **В нём нужно убрать в конце1 строчки импорт b2 и удалить 9 строчку.** После этого можно устанавливать пакет в систему как описано в README на github. Команда для открытия файла:
 ```bash 
 ~/unitree_sdk2_python/unitree_sdk2py/__init__.py
