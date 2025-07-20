@@ -15,7 +15,7 @@ setup(
     zip_safe=True,
     maintainer='banana-killer',
     maintainer_email='sashagrachev2005@gmail.com',
-    description="ROS2 node for converting joint data from FEDOR robot format to Unitree H1 format",
+    description="ROS2 node for converting joint data from UKT robot format to Unitree H1 format",
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={

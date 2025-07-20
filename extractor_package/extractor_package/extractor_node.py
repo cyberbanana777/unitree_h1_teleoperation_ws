@@ -34,6 +34,7 @@ import json
 TOPIC_PUBLISH_GROUP = "plotjuggler/joint_"
 TOPIC_SUBSCRIBE = "Fedor_data_rad"
 FREQUENCY = 333.3  # Monitoring frequency in Hz
+JOINT_NUM = 16  # Default joint to check: left_shoulder_roll
 
 # Joint mapping between Unitree H1 and Fedor
 JOINT_MAPPING_H1_TO_FEDOR = {
@@ -79,7 +80,7 @@ class JointMonitorNode(Node):
         self.control_dt = 1 / FREQUENCY
 
         # Declare and get joint number parameter
-        self.declare_parameter('H1_joint_num', 16)  # Default: left_shoulder_roll
+        self.declare_parameter('H1_joint_num', JOINT_NUM)  # Default: left_shoulder_roll
         self.joint_num = self.get_parameter('H1_joint_num').value
         self.get_logger().info(f"Monitoring joint number: {self.joint_num}")
 
