@@ -174,13 +174,22 @@ def convert_to_unitree_h1(data: list) -> dict:
                     (limits_of_this_joint_from_fedor[1] is not None)):
                 a_fedor = limits_of_this_joint_from_fedor[0]
                 b_febor = limits_of_this_joint_from_fedor[1]
-                output_target = map_range(
-                    np.clip(input_target, min(a_fedor, b_febor),
-                            max(a_fedor, b_febor)),
-                    limits_of_this_joint_from_fedor[0],
-                    limits_of_this_joint_from_fedor[1],
-                    limits_of_this_joint_from_unitree_h1[0],
-                    limits_of_this_joint_from_unitree_h1[1])
+                if index_in_unitree_h1 == 32 or index_in_unitree_h1 == 33:
+                    output_target = map_range(
+                        np.clip(input_target, min(a_fedor, b_febor),
+                                max(a_fedor, b_febor)),
+                        limits_of_this_joint_from_fedor[0],
+                        limits_of_this_joint_from_fedor[1],
+                        limits_of_this_joint_from_unitree_h1[1],
+                        limits_of_this_joint_from_unitree_h1[0])
+                else:
+                    output_target = map_range(
+                        np.clip(input_target, min(a_fedor, b_febor),
+                                max(a_fedor, b_febor)),
+                        limits_of_this_joint_from_fedor[0],
+                        limits_of_this_joint_from_fedor[1],
+                        limits_of_this_joint_from_unitree_h1[0],
+                        limits_of_this_joint_from_unitree_h1[1])
             else:
                 output_target = input_target
 

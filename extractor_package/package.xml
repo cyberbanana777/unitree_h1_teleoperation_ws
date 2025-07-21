@@ -5,7 +5,7 @@
   <version>1.0.0</version>
   <description>
     ROS2 node for matching and publishing angles from the Unitree H1 robot
-    and from the Fedor copier device of the selected joint
+    and from the UKT copier device of the selected joint
     </description>
   <maintainer email="sashagrachev2005@gmail.com">banana-killer</maintainer>
   <license>TODO: License declaration</license>
