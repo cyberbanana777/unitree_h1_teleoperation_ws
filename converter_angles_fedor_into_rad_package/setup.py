@@ -1,6 +1,6 @@
 from setuptools import setup
 
-package_name = 'converter_angles_fedor_into_rad_package'
+package_name = 'converter_angles_ukt_into_rad_package'
 
 setup(
     name=package_name,
@@ -15,13 +15,13 @@ setup(
     zip_safe=True,
     maintainer='banana-killer',
     maintainer_email='sashagrachev2005@gmail.com',
-    description='The ROS2 node converts the raw joint data of the FEDOR robot\
+    description='The ROS2 node converts the raw joint data of the UKT device\
                 with a specified scaling factor (0.1 by default)\
-                from the Fedor_bare_data topic to radians.',
+                from the "UKT_bare_data" topic to radians.',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'converter_angles_fedor_into_rad_node = converter_angles_fedor_into_rad_package.converter_angles_fedor_into_rad_node:main'
+            'converter_angles_ukt_into_rad_node = converter_angles_ukt_into_rad_package.converter_angles_ukt_into_rad_node:main'
         ],
     },
 )

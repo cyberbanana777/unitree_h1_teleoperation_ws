@@ -3,41 +3,40 @@
 """
 АННОТАЦИЯ
 ROS2-нода для сопоставления и публикации углов с робота Unitree H1
-и с копирующего устройства Fedor выбранного сочленения. Подписывается на топики с данными Федора в радианах
-(Fedor_data_rad), состояниями моторов Inspare hand (inspire/state) и низкоуровневыми
+и с копирующего устройства UKT выбранного сочленения. Подписывается на топики с данными Федора в радианах
+(UKT_data_rad), состояниями моторов Inspare hand (inspire/state) и низкоуровневыми
 показателями h1 (lowstate). Публикует значения выбранного сустава в топики
-plotjuggler/joint_*/{fedor,h1} для визуализации. Поддерживает настройку
+plotjuggler/joint_*/{UKT,h1} для визуализации. Поддерживает настройку
 отслеживаемого сустава через параметр H1_joint_num. Работает на частоте
 333.3 Гц для точного сравнения показаний. Основная функция - сопоставление и публикация 
 углов выбранного сустава в отдельные топики для визуализации в PlotJuggler.
 
 ANNOTATION
 ROS2 node for matching and publishing angles from the Unitree H1 robot
-and from the Fedor copier device of the selected joint. 
-Subscribes to Fedor data in rad (Fedor_data_rad), motor states Inspare hand 
+and from the UKT copier device of the selected joint. 
+Subscribes to UKT data in rad (UKT_data_rad), motor states Inspare hand 
 (inspire/state) and low-level metrics h1 (lowstate) topics. Publishes selected
-joint values to plotjuggler/joint_*/{fedor,h1} topics for visualization.
+joint values to plotjuggler/joint_*/{UKT,h1} topics for visualization.
 Supports joint selection via H1_joint_num parameter. Operates at 333.3 Hz
 for precise measurements comparison. Core
 functionality includes matching and publishing selected joint angles to 
 separate topics for PlotJuggler visualization.
 """
-
+import json
+import rclpy
+from rclpy.node import Node
 from unitree_go.msg import LowState, MotorStates
 from std_msgs.msg import Float32, String
-from rclpy.node import Node
-import rclpy
-import json
 
 
 # ==================== CONSTANTS ====================
 TOPIC_PUBLISH_GROUP = "plotjuggler/joint_"
-TOPIC_SUBSCRIBE = "Fedor_data_rad"
+TOPIC_SUBSCRIBE = "UKT_data_rad"
 FREQUENCY = 333.3  # Monitoring frequency in Hz
 JOINT_NUM = 16  # Default joint to check: left_shoulder_roll
 
-# Joint mapping between Unitree H1 and Fedor
-JOINT_MAPPING_H1_TO_FEDOR = {
+# Joint mapping between Unitree H1 and UKT
+JOINT_MAPPING_H1_TO_UKT = {
     # Left Arm
     16: 0,   # left_shoulder_roll_joint → L.ShoulderF
     17: 1,   # left_shoulder_pitch_joint → L.ShoulderS
@@ -69,13 +68,13 @@ JOINT_MAPPING_H1_TO_FEDOR = {
 
 
 class JointMonitorNode(Node):
-    """ROS2 node for monitoring and comparing joint angles between Unitree H1 and Fedor."""
+    """ROS2 node for monitoring and comparing joint angles between Unitree H1 and UKT."""
     
     def __init__(self):
         super().__init__("joint_monitor_node")
 
         # Initialize variables
-        self.joint_fedor_angle = 0.0
+        self.joint_ukt_angle = 0.0
         self.joint_h1_angle = 0.0
         self.control_dt = 1 / FREQUENCY
 
@@ -85,22 +84,22 @@ class JointMonitorNode(Node):
         self.get_logger().info(f"Monitoring joint number: {self.joint_num}")
 
         # Setup publishers
-        self.pub_fedor = self.create_publisher(
+        self.pub_ukt = self.create_publisher(
             Float32,
-            f"{TOPIC_PUBLISH_GROUP}{self.joint_num}/fedor",
+            f"{TOPIC_PUBLISH_GROUP}{self.joint_num}/UKT",
             10
         )
         self.pub_h1 = self.create_publisher(
             Float32,
-            f"{TOPIC_PUBLISH_GROUP}{self.joint_num}/h1",
+            f"{TOPIC_PUBLISH_GROUP}{self.joint_num}/H1",
             10
         )
 
         # Setup subscribers
-        self.sub_fedor = self.create_subscription(
+        self.sub_ukt = self.create_subscription(
             String,
             TOPIC_SUBSCRIBE,
-            self.fedor_data_callback,
+            self.ukt_data_callback,
             10
         )
         self.sub_states = self.create_subscription(
@@ -121,30 +120,30 @@ class JointMonitorNode(Node):
 
     def publish_joint_data(self):
         """Publish current joint angles from both systems."""
-        fedor_msg = Float32()
-        fedor_msg.data = float(self.joint_fedor_angle)
-        self.pub_fedor.publish(fedor_msg)
+        ukt_msg = Float32()
+        ukt_msg.data = float(self.joint_ukt_angle)
+        self.pub_ukt.publish(ukt_msg)
 
         h1_msg = Float32()
         h1_msg.data = float(self.joint_h1_angle)
         self.pub_h1.publish(h1_msg)
 
-    def fedor_data_callback(self, msg):
-        """Handle incoming joint data from Fedor device."""
+    def ukt_data_callback(self, msg):
+        """Handle incoming joint data from UKT device."""
         try:
             data = json.loads(msg.data)
-            fedor_joint_num = JOINT_MAPPING_H1_TO_FEDOR[self.joint_num]
+            ukt_joint_num = JOINT_MAPPING_H1_TO_UKT[self.joint_num]
             
-            if str(fedor_joint_num) not in data:
+            if str(ukt_joint_num) not in data:
                 self.get_logger().warning(
-                    f"Joint {fedor_joint_num} not found in Fedor data")
+                    f"Joint {ukt_joint_num} not found in UKT data")
                 return
                 
-            self.joint_fedor_angle = data[str(fedor_joint_num)]
-            self.get_logger().debug(f"Fedor joint angle: {self.joint_fedor_angle}")
+            self.joint_ukt_angle = data[str(ukt_joint_num)]
+            self.get_logger().debug(f"UKT joint angle: {self.joint_ukt_angle}")
             
         except json.JSONDecodeError:
-            self.get_logger().error("Invalid JSON data received from Fedor")
+            self.get_logger().error("Invalid JSON data received from UKT")
         except KeyError as e:
             self.get_logger().error(f"Joint mapping error: {str(e)}")
 

@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>converter_angles_fedor_into_rad_package</name>
+  <name>converter_angles_ukt_into_rad_package</name>
   <version>1.0.0</version>
-  <description>The ROS2 node converts the raw joint data of the FEDOR robot 
+  <description>The ROS2 node converts the raw joint data of the UKT device 
     with a specified scaling factor (0.1 by default)
-    from the 'Fedor_bare_data' topic to radians.</description>
+    from the 'UKT_bare_data' topic to radians.</description>
   <maintainer email="sashagrachev2005@gmail.com">banana-killer</maintainer>
   <license>TODO: License declaration</license>
 

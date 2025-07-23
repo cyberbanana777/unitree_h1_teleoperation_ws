@@ -4,28 +4,28 @@
 АННОТАЦИЯ
 ROS2-нода для приема UDP-пакетов с JSON-данными и их ретрансляции в ROS2-топик.
 Прослушивает указанный IP-адрес и порт (192.168.123.162:34567), публикует данные
-в топик "Fedor_bare_data" с частотой 333.3 Гц. Обеспечивает обработку ошибок
+в топик "ukt_bare_data" с частотой 333.3 Гц. Обеспечивает обработку ошибок
 и корректное завершение работы с освобождением ресурсов.
 
 ANNOTATION
 ROS2 node for receiving UDP packets with JSON data and retransmitting them to
 a ROS2 topic. Listens on specified IP:port (192.168.123.162:34567), publishes
-to "Fedor_bare_data" topic at 333.3 Hz frequency. Implements error handling
+to "ukt_bare_data" topic at 333.3 Hz frequency. Implements error handling
 and proper shutdown with resource cleanup.
 '''
 
-from rclpy.node import Node
-from std_msgs.msg import String
-import rclpy
 import socket
 import json
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import String
 
 
 # ===== Configuration =====
 HOST        = '192.168.123.162'
 PORT        = 34567
 DATA_PAYLOAD = 2000          # Max UDP packet size
-TOPIC       = "Fedor_bare_data"
+TOPIC       = "UKT_bare_data"
 FREQUENCY   = 333.33         # Processing frequency in Hz
 
 
