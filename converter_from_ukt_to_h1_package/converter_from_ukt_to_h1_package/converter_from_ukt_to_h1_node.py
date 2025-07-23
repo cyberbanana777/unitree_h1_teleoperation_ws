@@ -3,7 +3,7 @@
 '''
 АННОТАЦИЯ
 ROS2-нода для конвертации данных суставов из формата UKT-устройства в формат Unitree H1. 
-Нода подписывается на топик UKT_bare_data, получает JSON-данные, 
+Нода подписывается на топик "UKT_bare_data", получает JSON-данные, 
 конвертирует углы суставов с учетом
 ограничений каждого сочленения и публикует результат в топик
 positions_to_unitree с частотой 333.3 Гц. Особенностью является плавное
@@ -20,7 +20,7 @@ LIMITS_OF_JOINTS_* для сопоставления суставов и их д
 '''
 ANNOTATION
 ROS2 node for converting joint data from UKT device format to Unitree H1 format. 
-The node subscribes to the UKT_bare_data topic, receives JSON data, 
+The node subscribes to the "UKT_bare_data" topic, receives JSON data, 
 converts the joint angles taking
 into account the limits of each joint, and publishes the result to the
 positions_to_unitree topic at a frequency of 333.3 Hz. A special feature is a
