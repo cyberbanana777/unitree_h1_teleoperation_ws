@@ -85,7 +85,7 @@ ros2 run extractor_package extractor_node
 ros2 run extractor_package extractor_node --ros-args -p H1_joint_num:=15 # С параметром значения типа int
 ```
 Соответствие представлено ниже.
-![[docs/unitree_h1_joints.jpg]]
+![unitree_h1_joints](docs/unitree_h1_joints.jpg)
 #### repeater_package
 ```bash
 ros2 run repeater_package repeater_node 

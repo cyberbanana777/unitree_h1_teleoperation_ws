@@ -23,6 +23,7 @@ from std_msgs.msg import String
 
 # ===== Configuration =====
 HOST        = '192.168.123.162'
+HOST        = '192.168.1.54'
 PORT        = 34567
 DATA_PAYLOAD = 2000          # Max UDP packet size
 TOPIC       = "UKT_bare_data"
