@@ -2,26 +2,28 @@
 
 """
 АННОТАЦИЯ
-ROS2-нода для сопоставления и публикации углов с робота Unitree H1
-и с копирующего устройства UKT выбранного сочленения. Подписывается на топики с данными Федора в радианах
-(UKT_data_rad), состояниями моторов Inspare hand (inspire/state) и низкоуровневыми
-показателями Unitree H1 (lowstate). Публикует значения выбранного сустава в топики
-plotjuggler/joint_*/{UKT,H1} для визуализации. Поддерживает настройку
-отслеживаемого сустава через параметр H1_joint_num. Работает на частоте
-333.3 Гц для точного сравнения показаний. Основная функция - сопоставление и публикация 
-углов выбранного сустава в отдельные топики для визуализации в PlotJuggler.
+ROS2-нода для сопоставления и публикации углов с робота Unitree H1 и с
+копирующего устройства UKT выбранного сочленения. Подписывается на топики с
+данными УКТ в радианах (UKT_data_rad), состояниями моторов Inspare hand
+(inspire/state) и низкоуровневыми показателями Unitree H1 (lowstate).
+Публикует значения выбранного сустава в топики plotjuggler/joint_*/{UKT,H1}
+для визуализации. Поддерживает настройку отслеживаемого сустава через параметр
+H1_joint_num. Работает на частоте 333.3 Гц для точного сравнения показаний.
+Основная функция - сопоставление и публикация углов выбранного сустава в
+отдельные топики для визуализации в PlotJuggler.
 
 ANNOTATION
 ROS2 node for matching and publishing angles from the Unitree H1 robot
-and from the UKT copier device of the selected joint. 
-Subscribes to UKT data in rad (UKT_data_rad), motor states Inspare hand 
-(inspire/state) and low-level metrics Unitree H1 (lowstate) topics. Publishes selected
-joint values to plotjuggler/joint_*/{UKT,H1} topics for visualization.
-Supports joint selection via H1_joint_num parameter. Operates at 333.3 Hz
-for precise measurements comparison. Core
-functionality includes matching and publishing selected joint angles to 
-separate topics for PlotJuggler visualization.
+and from the UKT copier device of the selected joint.
+Subscribes to UKT data in rad (UKT_data_rad), motor states Inspare hand
+(inspire/state) and low-level metrics Unitree H1 (lowstate) topics. Publishes
+selected joint values to plotjuggler/joint_*/{UKT,H1} topics for
+visualization. Supports joint selection via H1_joint_num parameter. Operates
+at 333.3 Hz for precise measurements comparison. Core functionality includes
+matching and publishing selected joint angles to separate topics for
+PlotJuggler visualization.
 """
+
 import json
 
 import rclpy

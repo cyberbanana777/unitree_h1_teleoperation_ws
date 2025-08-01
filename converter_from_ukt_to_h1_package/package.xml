@@ -2,13 +2,16 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>converter_from_ukt_to_h1_package</name>
-  <version>0.1.0</version>
-  <description>ROS2 node for converting joint data from UKT device format to Unitree H1 format</description>
+  <version>1.0.0</version>
+  <description>
+    ROS2 node for converting joint data from UKT device format to Unitree H1 format
+  </description>
   <maintainer email="sashagrachev2005@gmail.com">banana-killer</maintainer>
   <license>TODO: License declaration</license>
 
   <depend>rclpy</depend>
   <depend>std_msgs</depend>
+  <depend>ukt_library</depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
