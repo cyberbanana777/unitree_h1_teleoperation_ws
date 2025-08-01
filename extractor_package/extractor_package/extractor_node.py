@@ -27,7 +27,7 @@ import rclpy
 from rclpy.node import Node
 from unitree_go.msg import LowState, MotorStates
 from std_msgs.msg import Float32, String
-
+from ukt_library import MAPPING_FOR_JOINTS_FROM_UNITREE_H1_TO_UKT
 
 # ==================== CONSTANTS ====================
 TOPIC_PUBLISH_GROUP = "plotjuggler/joint_"
@@ -35,36 +35,6 @@ TOPIC_SUBSCRIBE = "UKT_data_rad"
 FREQUENCY = 333.3  # Monitoring frequency in Hz
 JOINT_NUM = 16  # Default joint to check: left_shoulder_roll
 
-# Joint mapping between Unitree H1 and UKT
-JOINT_MAPPING_H1_TO_UKT = {
-    # Left Arm
-    16: 0,   # left_shoulder_roll_joint → L.ShoulderF
-    17: 1,   # left_shoulder_pitch_joint → L.ShoulderS
-    18: 2,   # left_shoulder_yaw_joint → L.ElbowR
-    19: 3,   # left_elbow_joint → L.Elbow
-    
-    # Left Hand
-    29: 7,   # L.Finger.Index
-    26: 8,   # L.Finger.Little
-    28: 9,   # L.Finger.Middle
-    27: 10,  # L.Finger.Ring
-    31: 11,  # L.Finger.Thumb
-    30: 12,  # L.Finger.Thumbs
-    
-    # Right Arm
-    12: 13,  # right_shoulder_roll_joint → R.ShoulderF
-    13: 14,  # right_shoulder_pitch_joint → R.ShoulderS
-    14: 15,  # right_shoulder_yaw_joint → R.ElbowR
-    15: 16,  # right_elbow_joint → R.Elbow
-    
-    # Right Hand
-    23: 20,  # R.Finger.Index
-    20: 21,  # R.Finger.Little
-    22: 22,  # R.Finger.Middle
-    21: 23,  # R.Finger.Ring
-    25: 24,  # R.Finger.Thumbs
-    24: 25   # R.Finger.Thumb
-}
 
 
 class JointMonitorNode(Node):
@@ -132,7 +102,7 @@ class JointMonitorNode(Node):
         """Handle incoming joint data from UKT device."""
         try:
             data = json.loads(msg.data)
-            ukt_joint_num = JOINT_MAPPING_H1_TO_UKT[self.joint_num]
+            ukt_joint_num = MAPPING_FOR_JOINTS_FROM_UNITREE_H1_TO_UKT[self.joint_num]
             
             if str(ukt_joint_num) not in data:
                 self.get_logger().warning(
