@@ -2,6 +2,7 @@ import numpy as np
 from .mapping import MAPPING_FOR_JOINTS_FROM_UKT_TO_UNITREE_H1
 from .limits import LIMITS_OF_JOINTS_UKT
 from h1_info_library import LIMITS_OF_JOINTS_WITH_HANDS_FOR_TELEOPERATION
+from .normalize_values import JOINT_CONVERSION_COEFFICIENTS
 
 
 def map_range(value: float,
@@ -78,7 +79,7 @@ def convert_from_ukt_to_rad(data: list, scaling=0.01) -> dict:
 
         if unitree_index is not None:
             # Get conversion coefficient for current joint
-            coefficient = MAPPING_FOR_JOINTS_FROM_UKT_TO_UNITREE_H1[i]
+            coefficient = JOINT_CONVERSION_COEFFICIENTS[i]
             
             # Apply conversion coefficient
             output_target = input_target * coefficient * scaling
@@ -90,6 +91,6 @@ def convert_from_ukt_to_rad(data: list, scaling=0.01) -> dict:
                 output_target = 1 - output_target
 
             # Store rounded value
-            output_targets[i] = round(output_target, 2)
+            output_targets[unitree_index] = round(output_target, 2)
 
     return output_targets
