@@ -60,7 +60,7 @@ def convert_from_ukt_to_unitree_h1(data: list) -> dict:
     return output_targets
 
 
-def convert_from_ukt_to_rad(self, data: list) -> dict:
+def convert_from_ukt_to_rad(data: list, scaling=0.01) -> dict:
     """
     Convert UKT raw joint data to radians using predefined conversion coefficients.
     
@@ -81,7 +81,7 @@ def convert_from_ukt_to_rad(self, data: list) -> dict:
             coefficient = MAPPING_FOR_JOINTS_FROM_UKT_TO_UNITREE_H1[i]
             
             # Apply conversion coefficient
-            output_target = input_target * coefficient * self.scaling
+            output_target = input_target * coefficient * scaling
 
             # Special handling for certain joints
             if i in (11, 24):  # Thumb joints needing offset

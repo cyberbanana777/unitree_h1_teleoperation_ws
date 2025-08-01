@@ -72,7 +72,7 @@ class UKTJointConverter(Node):
             joint_data = response['slaves']
             
             # Convert and publish data
-            converted_data = self.convert_from_ukt_to_rad(joint_data)
+            converted_data = convert_from_ukt_to_rad(joint_data, self.scaling)
             output_msg = String()
             output_msg.data = json.dumps(converted_data)
             
