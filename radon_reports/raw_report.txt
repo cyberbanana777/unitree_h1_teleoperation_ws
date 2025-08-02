@@ -131,29 +131,29 @@ completed_scripts_teleoperation/completed_scripts_teleoperation/__init__.py
         (C % S): 0%
         (C + M % L): 0%
 completed_scripts_teleoperation/launch/teleoperation_launch.py
-    LOC: 15
+    LOC: 30
     LLOC: 4
     SLOC: 12
-    Comments: 1
-    Single comments: 1
+    Comments: 14
+    Single comments: 14
     Multi: 0
-    Blank: 2
+    Blank: 4
     - Comment Stats
-        (C % L): 7%
-        (C % S): 8%
-        (C + M % L): 7%
+        (C % L): 47%
+        (C % S): 117%
+        (C + M % L): 47%
 completed_scripts_teleoperation/launch/teleoperation_with_metrics_launch.py
-    LOC: 36
+    LOC: 51
     LLOC: 6
     SLOC: 32
-    Comments: 3
-    Single comments: 1
+    Comments: 16
+    Single comments: 14
     Multi: 0
-    Blank: 3
+    Blank: 5
     - Comment Stats
-        (C % L): 8%
-        (C % S): 9%
-        (C + M % L): 8%
+        (C % L): 31%
+        (C % S): 50%
+        (C + M % L): 31%
 completed_scripts_teleoperation/test/test_flake8.py
     LOC: 25
     LLOC: 7
@@ -395,16 +395,16 @@ extractor_package/extractor_package/__init__.py
         (C % S): 0%
         (C + M % L): 0%
 extractor_package/extractor_package/extractor_node.py
-    LOC: 158
-    LLOC: 79
-    SLOC: 94
-    Comments: 12
-    Single comments: 12
+    LOC: 176
+    LLOC: 94
+    SLOC: 109
+    Comments: 16
+    Single comments: 11
     Multi: 26
-    Blank: 26
+    Blank: 30
     - Comment Stats
-        (C % L): 8%
-        (C % S): 13%
+        (C % L): 9%
+        (C % S): 15%
         (C + M % L): 24%
 repeater_package/setup.py
     LOC: 29
@@ -479,14 +479,14 @@ repeater_package/repeater_package/__init__.py
         (C % S): 0%
         (C + M % L): 0%
 ** Total **
-    LOC: 1457
-    LLOC: 466
-    SLOC: 806
-    Comments: 416
-    Single comments: 307
+    LOC: 1505
+    LLOC: 481
+    SLOC: 821
+    Comments: 446
+    Single comments: 332
     Multi: 133
-    Blank: 211
+    Blank: 219
     - Comment Stats
-        (C % L): 29%
-        (C % S): 52%
+        (C % L): 30%
+        (C % S): 54%
         (C + M % L): 38%

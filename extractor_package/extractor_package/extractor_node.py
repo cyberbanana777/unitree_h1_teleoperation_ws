@@ -36,6 +36,7 @@ TOPIC_PUBLISH_GROUP = "plotjuggler/joint_"
 TOPIC_SUBSCRIBE = "UKT_data_rad"
 FREQUENCY = 333.3  # Monitoring frequency in Hz
 JOINT_NUM = 16  # Default joint to check: left_shoulder_roll
+QUEUE_SIZE = 10
 
 
 class JointMonitorNode(Node):
@@ -61,21 +62,34 @@ class JointMonitorNode(Node):
 
         # Setup publishers
         self.pub_ukt = self.create_publisher(
-            Float32, f"{TOPIC_PUBLISH_GROUP}{self.joint_num}/UKT", 10
+            Float32, f"{TOPIC_PUBLISH_GROUP}{self.joint_num}/UKT", QUEUE_SIZE
         )
         self.pub_h1 = self.create_publisher(
-            Float32, f"{TOPIC_PUBLISH_GROUP}{self.joint_num}/H1", 10
+            Float32, f"{TOPIC_PUBLISH_GROUP}{self.joint_num}/H1", QUEUE_SIZE
         )
 
         # Setup subscribers
         self.sub_ukt = self.create_subscription(
             String, TOPIC_SUBSCRIBE, self.ukt_data_callback, 10
         )
-        self.sub_states = self.create_subscription(
-            MotorStates, "inspire/state", self.h1_states_callback, 10
-        )
-        self.sub_lowstate = self.create_subscription(
-            LowState, "lowstate", self.h1_lowstate_callback, 10
+
+        if self.joint_num < 20:  # Main joints (0-19):
+            self.offset = 0
+            self.msg_type = LowState
+            self.target_topic = "lowstate"
+
+        elif 20 <= self.joint_num <= 31:  # Fingers joints (20-31):
+            self.offset = 20
+            self.msg_type = MotorStates
+            self.target_topic = "inspire/state"
+
+        elif self.joint_num == 32 or self.joint_num == 33:  # Wrists joints:
+            self.offset = 32
+            self.msg_type = MotorStates
+            self.target_topic = "wrists/state"
+
+        self.sub = self.create_subscription(
+            self.msg_type, self.target_topic, self.h1_callback, QUEUE_SIZE
         )
 
         # Create timer for publishing
@@ -91,7 +105,7 @@ class JointMonitorNode(Node):
         h1_msg.data = float(self.joint_h1_angle)
         self.pub_h1.publish(h1_msg)
 
-    def ukt_data_callback(self, msg):
+    def ukt_data_callback(self, msg: String):
         """Handle incoming joint data from UKT device."""
         try:
             data = json.loads(msg.data)
@@ -111,31 +125,35 @@ class JointMonitorNode(Node):
         except KeyError as e:
             self.get_logger().error(f"Joint mapping error: {str(e)}")
 
-    def h1_lowstate_callback(self, msg):
-        """Handle low-level joint states from Unitree H1 (main joints)."""
-        if self.joint_num < 20:  # Main joints (0-19)
-            try:
-                self.joint_h1_angle = msg.motor_state[self.joint_num].q
-                self.get_logger().debug(
-                    f"H1 joint angle: {self.joint_h1_angle}"
+    def h1_callback(self, msg):
+        '''Handle incoming joint data from Unitree H1 device.'''
+        try:
+            num_with_offset = self.joint_num - self.offset
+            if self.joint_num < 20:  # Main joints (0-19):
+                self.joint_h1_angle = msg.motor_state[num_with_offset].q
+                self._type = 'main'
+            elif 20 <= self.joint_num <= 31:  # Fingers joints (20-31):
+                self.joint_h1_angle = msg.states[num_with_offset].q
+                self._type = 'finger'
+            elif (
+                self.joint_num == 32 or self.joint_num == 33
+            ):  # Wrists joints:
+                self.joint_h1_angle = msg.states[num_with_offset].q
+                self._type = 'wrist'
+            else:
+                self.get_logger().error(
+                    f"Joint {self.joint_num} \
+                    not found in H1 {self.target_topic}"
                 )
-            except IndexError:
-                self.get_logger().warning(
-                    f"Joint {self.joint_num} not found in H1 lowstate"
-                )
+                return
 
-    def h1_states_callback(self, msg):
-        """Handle motor states from Unitree H1 (hand joints)."""
-        if self.joint_num >= 20:  # Hand joints (20+)
-            try:
-                self.joint_h1_angle = msg.states[self.joint_num - 20].q
-                self.get_logger().debug(
-                    f"H1 hand joint angle: {self.joint_h1_angle}"
-                )
-            except IndexError:
-                self.get_logger().warning(
-                    f"Hand joint {self.joint_num} not found in H1 states"
-                )
+            self.get_logger().debug(
+                f"H1 {self._type} joint angle: {self.joint_h1_angle}"
+            )
+        except IndexError:
+            self.get_logger().warning(
+                f"Joint {self.joint_num} not found in H1 {self.target_topic}"
+            )
 
 
 def main(args=None):

@@ -428,18 +428,18 @@ extractor_package/extractor_package/__init__.py:
     time: 0.0
     bugs: 0.0
 extractor_package/extractor_package/extractor_node.py:
-    h1: 6
-    h2: 10
-    N1: 6
-    N2: 12
-    vocabulary: 16
-    length: 18
-    calculated_length: 48.72905595320056
-    volume: 72.0
-    difficulty: 3.6
-    effort: 259.2
-    time: 14.399999999999999
-    bugs: 0.024
+    h1: 7
+    h2: 21
+    N1: 16
+    N2: 30
+    vocabulary: 28
+    length: 46
+    calculated_length: 111.8901503327572
+    volume: 221.13832641464978
+    difficulty: 5.0
+    effort: 1105.691632073249
+    time: 61.42731289295827
+    bugs: 0.07371277547154993
 repeater_package/setup.py:
     h1: 1
     h2: 3

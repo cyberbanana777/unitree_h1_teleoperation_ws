@@ -1,5 +1,7 @@
 ukt_library/ukt_library/utils.py
     F 42:0 convert_from_ukt_to_unitree_h1 - B (6)
+extractor_package/extractor_package/extractor_node.py
+    M 128:4 JointMonitorNode.h1_callback - B (6)
 
-1 blocks (classes, functions, methods) analyzed.
+2 blocks (classes, functions, methods) analyzed.
 Average complexity: B (6.0)
