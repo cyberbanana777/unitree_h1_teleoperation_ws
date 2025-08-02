@@ -21,7 +21,7 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 
-from ukt_library import convert_to_unitree_h1
+from ukt_library import convert_from_ukt_to_unitree_h1
 
 TOPIC_SUBSCRIBE = "UKT_bare_data"
 TOPIC_PUBLISH = "positions_to_unitree"
@@ -67,7 +67,7 @@ class ConverterNode(Node):
             return
 
         # Convert the data to the format of unitree_h1
-        convert_data = convert_to_unitree_h1(self.formated_type)
+        convert_data = convert_from_ukt_to_unitree_h1(self.formated_type)
         convert_data[28] = convert_data[27]
 
         self.last_data = json.dumps(convert_data)

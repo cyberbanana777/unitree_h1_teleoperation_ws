@@ -1,0 +1,492 @@
+ukt_library/setup.py
+    LOC: 26
+    LLOC: 4
+    SLOC: 24
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 2
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+ukt_library/ukt_library/utils.py
+    LOC: 105
+    LLOC: 44
+    SLOC: 71
+    Comments: 6
+    Single comments: 6
+    Multi: 9
+    Blank: 19
+    - Comment Stats
+        (C % L): 6%
+        (C % S): 8%
+        (C + M % L): 14%
+ukt_library/ukt_library/normalize_values.py
+    LOC: 33
+    LLOC: 3
+    SLOC: 31
+    Comments: 29
+    Single comments: 1
+    Multi: 0
+    Blank: 1
+    - Comment Stats
+        (C % L): 88%
+        (C % S): 94%
+        (C + M % L): 88%
+ukt_library/ukt_library/__init__.py
+    LOC: 21
+    LLOC: 5
+    SLOC: 20
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 1
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+ukt_library/ukt_library/limits.py
+    LOC: 28
+    LLOC: 2
+    SLOC: 28
+    Comments: 26
+    Single comments: 0
+    Multi: 0
+    Blank: 0
+    - Comment Stats
+        (C % L): 93%
+        (C % S): 93%
+        (C + M % L): 93%
+ukt_library/ukt_library/mapping.py
+    LOC: 61
+    LLOC: 4
+    SLOC: 58
+    Comments: 55
+    Single comments: 1
+    Multi: 0
+    Blank: 2
+    - Comment Stats
+        (C % L): 90%
+        (C % S): 95%
+        (C + M % L): 90%
+ukt_library/test/test_flake8.py
+    LOC: 25
+    LLOC: 7
+    SLOC: 9
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 52%
+        (C % S): 144%
+        (C + M % L): 52%
+ukt_library/test/test_pep257.py
+    LOC: 23
+    LLOC: 7
+    SLOC: 7
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 57%
+        (C % S): 186%
+        (C + M % L): 57%
+ukt_library/test/test_copyright.py
+    LOC: 23
+    LLOC: 7
+    SLOC: 7
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 57%
+        (C % S): 186%
+        (C + M % L): 57%
+completed_scripts_teleoperation/setup.py
+    LOC: 34
+    LLOC: 6
+    SLOC: 31
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+completed_scripts_teleoperation/completed_scripts_teleoperation/__init__.py
+    LOC: 0
+    LLOC: 0
+    SLOC: 0
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 0
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+completed_scripts_teleoperation/launch/teleoperation_launch.py
+    LOC: 15
+    LLOC: 4
+    SLOC: 12
+    Comments: 1
+    Single comments: 1
+    Multi: 0
+    Blank: 2
+    - Comment Stats
+        (C % L): 7%
+        (C % S): 8%
+        (C + M % L): 7%
+completed_scripts_teleoperation/launch/teleoperation_with_metrics_launch.py
+    LOC: 36
+    LLOC: 6
+    SLOC: 32
+    Comments: 3
+    Single comments: 1
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 8%
+        (C % S): 9%
+        (C + M % L): 8%
+completed_scripts_teleoperation/test/test_flake8.py
+    LOC: 25
+    LLOC: 7
+    SLOC: 9
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 52%
+        (C % S): 144%
+        (C + M % L): 52%
+completed_scripts_teleoperation/test/test_pep257.py
+    LOC: 23
+    LLOC: 7
+    SLOC: 7
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 57%
+        (C % S): 186%
+        (C + M % L): 57%
+completed_scripts_teleoperation/test/test_copyright.py
+    LOC: 23
+    LLOC: 7
+    SLOC: 7
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 57%
+        (C % S): 186%
+        (C + M % L): 57%
+converter_angles_ukt_into_rad_package/setup.py
+    LOC: 30
+    LLOC: 4
+    SLOC: 28
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 2
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+converter_angles_ukt_into_rad_package/converter_angles_ukt_into_rad_package/converter_angles_ukt_into_rad_node.py
+    LOC: 107
+    LLOC: 54
+    SLOC: 55
+    Comments: 11
+    Single comments: 13
+    Multi: 14
+    Blank: 25
+    - Comment Stats
+        (C % L): 10%
+        (C % S): 20%
+        (C + M % L): 23%
+converter_angles_ukt_into_rad_package/converter_angles_ukt_into_rad_package/__init__.py
+    LOC: 0
+    LLOC: 0
+    SLOC: 0
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 0
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+converter_angles_ukt_into_rad_package/test/test_flake8.py
+    LOC: 25
+    LLOC: 7
+    SLOC: 9
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 52%
+        (C % S): 144%
+        (C + M % L): 52%
+converter_angles_ukt_into_rad_package/test/test_pep257.py
+    LOC: 23
+    LLOC: 7
+    SLOC: 7
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 57%
+        (C % S): 186%
+        (C + M % L): 57%
+converter_angles_ukt_into_rad_package/test/test_copyright.py
+    LOC: 23
+    LLOC: 7
+    SLOC: 7
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 57%
+        (C % S): 186%
+        (C + M % L): 57%
+converter_from_ukt_to_h1_package/setup.py
+    LOC: 30
+    LLOC: 4
+    SLOC: 28
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 2
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+converter_from_ukt_to_h1_package/converter_from_ukt_to_h1_package/__init__.py
+    LOC: 0
+    LLOC: 0
+    SLOC: 0
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 0
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+converter_from_ukt_to_h1_package/converter_from_ukt_to_h1_package/converter_from_ukt_to_h1_node.py
+    LOC: 102
+    LLOC: 56
+    SLOC: 54
+    Comments: 4
+    Single comments: 5
+    Multi: 17
+    Blank: 26
+    - Comment Stats
+        (C % L): 4%
+        (C % S): 7%
+        (C + M % L): 21%
+converter_from_ukt_to_h1_package/test/test_flake8.py
+    LOC: 25
+    LLOC: 7
+    SLOC: 9
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 52%
+        (C % S): 144%
+        (C + M % L): 52%
+converter_from_ukt_to_h1_package/test/test_pep257.py
+    LOC: 23
+    LLOC: 7
+    SLOC: 7
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 57%
+        (C % S): 186%
+        (C + M % L): 57%
+converter_from_ukt_to_h1_package/test/test_copyright.py
+    LOC: 23
+    LLOC: 7
+    SLOC: 7
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 57%
+        (C % S): 186%
+        (C + M % L): 57%
+extractor_package/setup.py
+    LOC: 29
+    LLOC: 4
+    SLOC: 27
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 2
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+extractor_package/test/test_flake8.py
+    LOC: 25
+    LLOC: 7
+    SLOC: 9
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 52%
+        (C % S): 144%
+        (C + M % L): 52%
+extractor_package/test/test_pep257.py
+    LOC: 23
+    LLOC: 7
+    SLOC: 7
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 57%
+        (C % S): 186%
+        (C + M % L): 57%
+extractor_package/test/test_copyright.py
+    LOC: 23
+    LLOC: 7
+    SLOC: 7
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 57%
+        (C % S): 186%
+        (C + M % L): 57%
+extractor_package/extractor_package/__init__.py
+    LOC: 0
+    LLOC: 0
+    SLOC: 0
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 0
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+extractor_package/extractor_package/extractor_node.py
+    LOC: 158
+    LLOC: 79
+    SLOC: 94
+    Comments: 12
+    Single comments: 12
+    Multi: 26
+    Blank: 26
+    - Comment Stats
+        (C % L): 8%
+        (C % S): 13%
+        (C + M % L): 24%
+repeater_package/setup.py
+    LOC: 29
+    LLOC: 4
+    SLOC: 27
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 2
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+repeater_package/test/test_flake8.py
+    LOC: 25
+    LLOC: 7
+    SLOC: 9
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 52%
+        (C % S): 144%
+        (C + M % L): 52%
+repeater_package/test/test_pep257.py
+    LOC: 23
+    LLOC: 7
+    SLOC: 7
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 57%
+        (C % S): 186%
+        (C + M % L): 57%
+repeater_package/test/test_copyright.py
+    LOC: 23
+    LLOC: 7
+    SLOC: 7
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 57%
+        (C % S): 186%
+        (C + M % L): 57%
+repeater_package/repeater_package/repeater_node.py
+    LOC: 129
+    LLOC: 56
+    SLOC: 52
+    Comments: 37
+    Single comments: 38
+    Multi: 12
+    Blank: 27
+    - Comment Stats
+        (C % L): 29%
+        (C % S): 71%
+        (C + M % L): 38%
+repeater_package/repeater_package/__init__.py
+    LOC: 0
+    LLOC: 0
+    SLOC: 0
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 0
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+** Total **
+    LOC: 1399
+    LLOC: 465
+    SLOC: 810
+    Comments: 418
+    Single comments: 312
+    Multi: 78
+    Blank: 199
+    - Comment Stats
+        (C % L): 30%
+        (C % S): 52%
+        (C + M % L): 35%
