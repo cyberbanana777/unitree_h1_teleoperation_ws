@@ -11,17 +11,17 @@ ukt_library/setup.py
         (C % S): 0%
         (C + M % L): 0%
 ukt_library/ukt_library/utils.py
-    LOC: 105
-    LLOC: 44
-    SLOC: 71
-    Comments: 6
-    Single comments: 6
-    Multi: 9
-    Blank: 19
+    LOC: 162
+    LLOC: 45
+    SLOC: 66
+    Comments: 4
+    Single comments: 1
+    Multi: 64
+    Blank: 31
     - Comment Stats
-        (C % L): 6%
-        (C % S): 8%
-        (C + M % L): 14%
+        (C % L): 2%
+        (C % S): 6%
+        (C + M % L): 42%
 ukt_library/ukt_library/normalize_values.py
     LOC: 33
     LLOC: 3
@@ -479,14 +479,14 @@ repeater_package/repeater_package/__init__.py
         (C % S): 0%
         (C + M % L): 0%
 ** Total **
-    LOC: 1399
-    LLOC: 465
-    SLOC: 810
-    Comments: 418
-    Single comments: 312
-    Multi: 78
-    Blank: 199
+    LOC: 1456
+    LLOC: 466
+    SLOC: 805
+    Comments: 416
+    Single comments: 307
+    Multi: 133
+    Blank: 211
     - Comment Stats
-        (C % L): 30%
+        (C % L): 29%
         (C % S): 52%
-        (C + M % L): 35%
+        (C + M % L): 38%

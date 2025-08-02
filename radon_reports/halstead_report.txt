@@ -12,18 +12,18 @@ ukt_library/setup.py:
     time: 0.4444444444444444
     bugs: 0.004
 ukt_library/ukt_library/utils.py:
-    h1: 9
-    h2: 34
-    N1: 21
-    N2: 42
-    vocabulary: 43
-    length: 63
-    calculated_length: 201.50306161549238
-    volume: 341.85467954623215
-    difficulty: 5.5588235294117645
-    effort: 1900.3098363011138
-    time: 105.57276868339521
-    bugs: 0.11395155984874406
+    h1: 8
+    h2: 31
+    N1: 19
+    N2: 38
+    vocabulary: 39
+    length: 57
+    calculated_length: 177.58008562199316
+    volume: 301.26792647514816
+    difficulty: 4.903225806451613
+    effort: 1477.1846717491135
+    time: 82.06581509717297
+    bugs: 0.10042264215838272
 ukt_library/ukt_library/normalize_values.py:
     h1: 2
     h2: 10

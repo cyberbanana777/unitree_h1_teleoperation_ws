@@ -1,5 +1,5 @@
 ukt_library/setup.py - A (79.18)
-ukt_library/ukt_library/utils.py - A (68.75)
+ukt_library/ukt_library/utils.py - A (70.43)
 ukt_library/ukt_library/normalize_values.py - A (98.50)
 ukt_library/ukt_library/__init__.py - A (100.00)
 ukt_library/ukt_library/limits.py - A (100.00)
