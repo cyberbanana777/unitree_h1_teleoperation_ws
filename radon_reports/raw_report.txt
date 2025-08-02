@@ -1,7 +1,7 @@
 ukt_library/setup.py
-    LOC: 26
+    LOC: 27
     LLOC: 4
-    SLOC: 24
+    SLOC: 25
     Comments: 0
     Single comments: 0
     Multi: 0
@@ -479,9 +479,9 @@ repeater_package/repeater_package/__init__.py
         (C % S): 0%
         (C + M % L): 0%
 ** Total **
-    LOC: 1456
+    LOC: 1457
     LLOC: 466
-    SLOC: 805
+    SLOC: 806
     Comments: 416
     Single comments: 307
     Multi: 133
