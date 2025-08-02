@@ -24,7 +24,8 @@ def generate_launch_description():
                     name=f"extractor_node_{joint}",
                     parameters=[
                         {
-                            "H1_joint_num": joint,  # Передаем номер сустава из списка
+                            # Передаем номер сустава из списка
+                            "H1_joint_num": joint,
                         }
                     ],
                 )

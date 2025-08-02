@@ -23,7 +23,8 @@ setup(
     tests_require=["pytest"],
     entry_points={
         "console_scripts": [
-            f"converter_angles_ukt_into_rad_node = {package_name}.converter_angles_ukt_into_rad_node:main"
+            f"converter_angles_ukt_into_rad_node = \
+                {package_name}.converter_angles_ukt_into_rad_node:main"
         ],
     },
 )

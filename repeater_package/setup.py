@@ -17,7 +17,8 @@ setup(
     zip_safe=True,
     maintainer="banana-killer",
     maintainer_email="sashagrachev2005@gmail.com",
-    description="ROS2 node for receiving UDP packets with JSON data and retransmitting them to a ROS2 topic",
+    description="ROS2 node for receiving UDP packets with JSON data and \
+        retransmitting them to a ROS2 topic",
     license="TODO: License declaration",
     tests_require=["pytest"],
     entry_points={

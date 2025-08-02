@@ -17,12 +17,14 @@ setup(
     zip_safe=True,
     maintainer="banana-killer",
     maintainer_email="sashagrachev2005@gmail.com",
-    description="ROS2 node for converting joint data from UKT device format to Unitree H1 format",
+    description="ROS2 node for converting joint data from UKT device format \
+        to Unitree H1 format",
     license="TODO: License declaration",
     tests_require=["pytest"],
     entry_points={
         "console_scripts": [
-            "converter_from_ukt_to_h1_node = converter_from_ukt_to_h1_package.converter_from_ukt_to_h1_node:main",
+            f"converter_from_ukt_to_h1_node = \
+                {package_name}.converter_from_ukt_to_h1_node:main",
         ],
     },
 )

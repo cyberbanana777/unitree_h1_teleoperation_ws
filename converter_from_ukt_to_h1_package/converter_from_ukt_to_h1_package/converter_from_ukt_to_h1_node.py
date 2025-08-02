@@ -25,11 +25,14 @@ from ukt_library import convert_to_unitree_h1
 
 TOPIC_SUBSCRIBE = "UKT_bare_data"
 TOPIC_PUBLISH = "positions_to_unitree"
-FREQUENCY = 333.3  # Частота мониторинга в Герцах
+FREQUENCY = 333.3  # Monitoring frequency in Hertz
 
 
 class ConverterNode(Node):
-    """ROS2 нода для прослушивания данных с повторителя и конвертации данных."""
+    """
+    ROS2 node for listening to data from the repeater and converting
+    data.
+    """
 
     def __init__(self):
         super().__init__("converter_from_UKT_to_H1_node")
@@ -53,7 +56,7 @@ class ConverterNode(Node):
         self.received_data = msg.data
 
     def timer_callback(self):
-        """Обратный вызов таймера для обработки данных."""
+        """Timer callback to process data."""
 
         try:
             data = self.received_data
@@ -75,7 +78,7 @@ class ConverterNode(Node):
 
 
 def main(args=None):
-    """Основная функция для запуска ноды."""
+    """The main function for starting a node."""
     rclpy.init(args=args)
     node = ConverterNode()
 

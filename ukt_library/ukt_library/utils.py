@@ -77,7 +77,8 @@ def convert_from_ukt_to_rad(data: list, scaling=0.01) -> dict:
         data: List of dictionaries containing raw joint data from UKT device
 
     Returns:
-        Dictionary of converted joint values in radians, rounded to 2 decimal places
+        Dictionary of converted joint values in radians, rounded to 2 decimal
+        places
     """
     output_targets = {}
 

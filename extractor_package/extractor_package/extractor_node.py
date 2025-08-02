@@ -39,7 +39,10 @@ JOINT_NUM = 16  # Default joint to check: left_shoulder_roll
 
 
 class JointMonitorNode(Node):
-    """ROS2 node for monitoring and comparing joint angles between Unitree H1 and UKT."""
+    """
+    ROS2 node for monitoring and comparing joint angles between Unitree H1
+    and UKT.
+    """
 
     def __init__(self):
         super().__init__("joint_monitor_node")

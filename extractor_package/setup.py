@@ -17,8 +17,9 @@ setup(
     zip_safe=True,
     maintainer="banana-killer",
     maintainer_email="sashagrachev2005@gmail.com",
-    description="ROS2 node for matching and publishing angles from the Unitree H1 robot\
-                and from the UKT copier device of the selected joint",
+    description="ROS2 node for matching and publishing angles from the \
+        Unitree H1 robot and from the UKT copier device of the selected \
+        joint",
     tests_require=["pytest"],
     entry_points={
         "console_scripts": [
