@@ -7,18 +7,45 @@ Skipped 12 files
 All checks passed!
 [0;36m[STEP 4][0m [1mFlake8[0m (дополнительная проверка стиля)...
 [0;33m[STEP 5][0m [1mMypy[0m (проверка типов)...
-[0;32mMypy не обнаружил проблем[0m
+[0;33mMypy обнаружил проблемы:[0m
+17 files checked
+5 errors
+debug_srcipits/finaly_converter.py: note: In function "convert_to_unitree_h1":
+debug_srcipits/finaly_converter.py:167:17: error: Value of type "object" is not indexable
+debug_srcipits/finaly_converter.py:168:17: error: Value of type "object" is not indexable
+debug_srcipits/finaly_converter.py:171:17: error: Value of type "object" is not indexable
+debug_srcipits/finaly_converter.py:172:17: error: Value of type "object" is not indexable
+Checked files:
+* completed_scripts_teleoperation/completed_scripts_teleoperation/__init__.py
+* completed_scripts_teleoperation/launch/teleoperation_launch.py
+* completed_scripts_teleoperation/launch/teleoperation_with_metrics_launch.py
+* converter_angles_ukt_into_rad_package/converter_angles_ukt_into_rad_package/__init__.py
+* converter_angles_ukt_into_rad_package/converter_angles_ukt_into_rad_package/converter_angles_ukt_into_rad_node.py
+* converter_from_ukt_to_h1_package/converter_from_ukt_to_h1_package/__init__.py
+* converter_from_ukt_to_h1_package/converter_from_ukt_to_h1_package/converter_from_ukt_to_h1_node.py
+* debug_srcipits/finaly_converter.py
+* extractor_package/extractor_package/__init__.py
+* extractor_package/extractor_package/extractor_node.py
+* repeater_package/repeater_package/__init__.py
+* repeater_package/repeater_package/repeater_node.py
+* ukt_library/ukt_library/__init__.py
+* ukt_library/ukt_library/limits.py
+* ukt_library/ukt_library/mapping.py
+* ukt_library/ukt_library/normalize_values.py
+* ukt_library/ukt_library/utils.py
 [0;95m[STEP 6][0m [1mRadon[0m (анализ качества кода)...
   📊 Анализ цикломатической сложности...
   [0;32m✅ Цикломатическая сложность в норме (все <= B или сложность < 7)[0m
   📈 Анализ индекса поддерживаемости...
-  [0;32m✅ Индекс поддерживаемости в норме (все >= 70)[0m
+  [0;33m⛔ Обнаружены модули с низким индексом поддерживаемости (< 70):[0m
+    debug_srcipits/finaly_converter.py - A 66.53
+    extractor_package/extractor_package/extractor_node.py - A 65.91
   📦 Анализ сырых метрик...
   🧠 Анализ метрик Холстеда...
 
 [1m📊 Отчет о файлах:[0m
 [1m------------------[0m
-[0;32m✅ Проверенные файлы (28):[0m
+[0;32m✅ Проверенные файлы (29):[0m
   - ./ukt_library/ukt_library/utils.py
   - ./ukt_library/ukt_library/normalize_values.py
   - ./ukt_library/ukt_library/__init__.py
@@ -31,6 +58,7 @@ All checks passed!
   - ./completed_scripts_teleoperation/launch/teleoperation_with_metrics_launch.py
   - ./completed_scripts_teleoperation/test/test_flake8.py
   - ./completed_scripts_teleoperation/test/test_pep257.py
+  - ./debug_srcipits/finaly_converter.py
   - ./converter_angles_ukt_into_rad_package/converter_angles_ukt_into_rad_package/converter_angles_ukt_into_rad_node.py
   - ./converter_angles_ukt_into_rad_package/converter_angles_ukt_into_rad_package/__init__.py
   - ./converter_angles_ukt_into_rad_package/test/test_flake8.py
@@ -65,7 +93,8 @@ All checks passed!
 [1m📊 Отчет Radon:[0m
 [1m--------------[0m
 Цикломатическая сложность: [0;32mPASS[0m
-Индекс поддерживаемости:   [0;32mPASS[0m
+Индекс поддерживаемости:   [0;33mFAIL[0m
 Отчеты сохранены в: [0;34mradon_reports[0m
 
-[1m[0;32m✅ Форматирование успешно завершено![0m
+[1m[0;33m⚠️ Форматирование завершено с предупреждениями[0m
+  Проблемы обнаружены в: [0;33mMypy Radon[0m

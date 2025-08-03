@@ -14,6 +14,7 @@ completed_scripts_teleoperation/launch/teleoperation_with_metrics_launch.py - A 
 completed_scripts_teleoperation/test/test_flake8.py - A (88.83)
 completed_scripts_teleoperation/test/test_pep257.py - A (85.69)
 completed_scripts_teleoperation/test/test_copyright.py - A (85.69)
+debug_srcipits/finaly_converter.py - A (66.53)
 converter_angles_ukt_into_rad_package/setup.py - A (79.18)
 converter_angles_ukt_into_rad_package/converter_angles_ukt_into_rad_package/converter_angles_ukt_into_rad_node.py - A (80.13)
 converter_angles_ukt_into_rad_package/converter_angles_ukt_into_rad_package/__init__.py - A (100.00)

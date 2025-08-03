@@ -206,6 +206,19 @@ completed_scripts_teleoperation/test/test_copyright.py:
     effort: 2.3774437510817346
     time: 0.1320802083934297
     bugs: 0.0015849625007211565
+debug_srcipits/finaly_converter.py:
+    h1: 11
+    h2: 42
+    N1: 46
+    N2: 62
+    vocabulary: 53
+    length: 108
+    calculated_length: 264.53107956171823
+    volume: 618.6154090928255
+    difficulty: 8.119047619047619
+    effort: 5022.567964301274
+    time: 279.031553572293
+    bugs: 0.20620513636427518
 converter_angles_ukt_into_rad_package/setup.py:
     h1: 1
     h2: 3

@@ -190,6 +190,18 @@ completed_scripts_teleoperation/test/test_copyright.py
         (C % L): 57%
         (C % S): 186%
         (C + M % L): 57%
+debug_srcipits/finaly_converter.py
+    LOC: 250
+    LLOC: 76
+    SLOC: 193
+    Comments: 83
+    Single comments: 11
+    Multi: 10
+    Blank: 36
+    - Comment Stats
+        (C % L): 33%
+        (C % S): 43%
+        (C + M % L): 37%
 converter_angles_ukt_into_rad_package/setup.py
     LOC: 30
     LLOC: 4
@@ -479,14 +491,14 @@ repeater_package/repeater_package/__init__.py
         (C % S): 0%
         (C + M % L): 0%
 ** Total **
-    LOC: 1505
-    LLOC: 481
-    SLOC: 821
-    Comments: 446
-    Single comments: 332
-    Multi: 133
-    Blank: 219
+    LOC: 1755
+    LLOC: 557
+    SLOC: 1014
+    Comments: 529
+    Single comments: 343
+    Multi: 143
+    Blank: 255
     - Comment Stats
         (C % L): 30%
-        (C % S): 54%
+        (C % S): 52%
         (C + M % L): 38%
