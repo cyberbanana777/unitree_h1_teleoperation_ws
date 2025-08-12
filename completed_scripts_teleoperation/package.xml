@@ -9,6 +9,13 @@
   <maintainer email="sashagrachev2005@gmail.com">banana-killer</maintainer>
   <license>TODO: License declaration</license>
 
+  <exec_depend>ros2launch</exec_depend>
+  <exec_depend>repeater_package</exec_depend>
+  <exec_depend>converter_from_ukt_to_h1_package</exec_depend>
+  <exec_depend>converter_angles_ukt_into_rad_package</exec_depend>
+  <exec_depend>extractor_package</exec_depend>
+
+
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
   <test_depend>ament_pep257</test_depend>
