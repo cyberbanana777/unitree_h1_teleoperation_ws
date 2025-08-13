@@ -4,7 +4,7 @@ MAPPING_FOR_JOINTS_FROM_UKT_TO_UNITREE_H1 = {
     1: 17,  # L.ShoulderS → left_shoulder_pitch_joint
     2: 18,  # L.ElbowR → left_shoulder_yaw_joint
     3: 19,  # L.Elbow → left_elbow_joint
-    4: None,  # L.WristR (unmapped)
+    4: 32,  # L.WristR
     5: None,  # L.WristS (unmapped)
     6: None,  # L.WristF (unmapped)
     # Left Hand
@@ -19,7 +19,7 @@ MAPPING_FOR_JOINTS_FROM_UKT_TO_UNITREE_H1 = {
     14: 13,  # R.ShoulderS → right_shoulder_pitch_joint
     15: 14,  # R.ElbowR → right_shoulder_yaw_joint
     16: 15,  # R.Elbow → right_elbow_joint
-    17: None,  # R.WristR (unmapped)
+    17: 33,  # R.WristR
     18: None,  # R.WristS (unmapped)
     19: None,  # R.WristF (unmapped)
     # Right Hand
