@@ -1,3 +1,7 @@
+# Copyright (c) 2025 2025 Alice Zenina and Alexander Grachev RTU MIREA (Russia)
+# SPDX-License-Identifier: MIT
+# Details in the LICENSE file in the root of the package.
+
 LIMITS_OF_JOINTS_UKT = {
     0: (-12.0, 4.0),  # L_ShoulderF [4.0, -12] + назад совпадают
     1: (0.0, 12.0),  # L_ShoulderS [0, 12] + вверх от тела совпадают

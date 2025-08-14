@@ -19,7 +19,7 @@ setup(
     maintainer_email="sashagrachev2005@gmail.com",
     description="ROS2 node for converting joint data from UKT device format \
         to Unitree H1 format",
-    license="TODO: License declaration",
+    license="MIT",
     tests_require=["pytest"],
     entry_points={
         "console_scripts": [

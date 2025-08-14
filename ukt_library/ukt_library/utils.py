@@ -1,3 +1,7 @@
+# Copyright (c) 2025 2025 Alice Zenina and Alexander Grachev RTU MIREA (Russia)
+# SPDX-License-Identifier: MIT
+# Details in the LICENSE file in the root of the package.
+
 import numpy as np
 from h1_info_library import LIMITS_OF_JOINTS_WITH_HANDS_FOR_TELEOPERATION
 

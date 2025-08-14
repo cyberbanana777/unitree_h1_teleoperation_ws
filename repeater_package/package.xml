@@ -8,7 +8,7 @@
     retransmitting them to a ROS2 topic.
   </description>
   <maintainer email="sashagrachev2005@gmail.com">banana-killer</maintainer>
-  <license>TODO: License declaration</license>
+  <license>MIT</license>
 
   <depend>rclpy</depend>
   <depend>std_msgs</depend>

@@ -19,7 +19,7 @@ setup(
     maintainer_email="sashagrachev2005@gmail.com",
     description="This is a python3 library for comfortable programming UKT. \
       It lib include reference info and special functions working with UKT.",
-    license="TODO: License declaration",
+    license="MIT",
     tests_require=["pytest"],
     entry_points={
         "console_scripts": [],

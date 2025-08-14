@@ -7,7 +7,7 @@
     for running different node configurations for teleoperation
   </description>
   <maintainer email="sashagrachev2005@gmail.com">banana-killer</maintainer>
-  <license>TODO: License declaration</license>
+  <license>MIT</license>
 
   <exec_depend>ros2launch</exec_depend>
   <exec_depend>repeater_package</exec_depend>

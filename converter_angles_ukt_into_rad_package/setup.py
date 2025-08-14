@@ -20,6 +20,7 @@ setup(
     description='The ROS2 node converts the raw joint data of the UKT device\
                 with a specified scaling factor (0.1 by default)\
                 from the "UKT_bare_data" topic to radians.',
+    license='MIT',
     tests_require=["pytest"],
     entry_points={
         "console_scripts": [

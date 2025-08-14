@@ -1,3 +1,7 @@
+# Copyright (c) 2025 2025 Alice Zenina and Alexander Grachev RTU MIREA (Russia)
+# SPDX-License-Identifier: MIT
+# Details in the LICENSE file in the root of the package.
+
 MAPPING_FOR_JOINTS_FROM_UKT_TO_UNITREE_H1 = {
     # Left Arm
     0: 16,  # L.ShoulderF → left_shoulder_roll_joint

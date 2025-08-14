@@ -26,7 +26,7 @@ setup(
     maintainer_email="sashagrachev2005@gmail.com",
     description="A package with python launcher files\
                 for running different node configurations for teleoperation",
-    license="TODO: License declaration",
+    license="MIT",
     tests_require=["pytest"],
     entry_points={
         "console_scripts": [],

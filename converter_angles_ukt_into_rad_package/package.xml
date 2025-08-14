@@ -7,7 +7,7 @@
     with a specified scaling factor (0.1 by default)
     from the 'UKT_bare_data' topic to radians.</description>
   <maintainer email="sashagrachev2005@gmail.com">banana-killer</maintainer>
-  <license>TODO: License declaration</license>
+  <license>MIT</license>
 
   <depend>rclpy</depend>
   <depend>std_msgs</depend>

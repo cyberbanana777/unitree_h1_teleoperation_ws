@@ -7,7 +7,7 @@
     ROS2 node for converting joint data from UKT device format to Unitree H1 format
   </description>
   <maintainer email="sashagrachev2005@gmail.com">banana-killer</maintainer>
-  <license>TODO: License declaration</license>
+  <license>MIT</license>
 
   <depend>rclpy</depend>
   <depend>std_msgs</depend>
