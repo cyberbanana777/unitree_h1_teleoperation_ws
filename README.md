@@ -96,7 +96,7 @@ ros2 run extractor_package extractor_node
 ros2 run extractor_package extractor_node --ros-args -p H1_joint_num:=15 # С параметром значения типа int
 ```
 Нумерация суставов робота представлена ниже.
-![unitree_h1_joints](docs/unitree_h1_joints.jpg)
+![unitree_h1_joints](docs/unitree_h1_joints.png)
 #### repeater_package
 ```bash
 ros2 run repeater_package repeater_node 
