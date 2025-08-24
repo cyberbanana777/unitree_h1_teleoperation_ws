@@ -42,9 +42,12 @@ class UDPRepeaterNode(Node):
         # Timing control
         self.control_dt = 1 / FREQUENCY
 
+        self.declare_parameter('ip', HOST)
+        self.ip = self.get_parameter('ip').value
+
         # Network setup
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.socket.bind((HOST, PORT))
+        self.socket.bind((self.ip, PORT))
 
         # ROS2 setup
         self.publisher = self.create_publisher(String, TOPIC, 10)
