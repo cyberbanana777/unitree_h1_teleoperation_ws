@@ -18,8 +18,8 @@
    - 6.3 [Пакет 3: `extractor_package`](#пакет-3-extractor_package)
    - 6.4 [Пакет 4: `repeater_package`](#пакет-4-repeater_package)
 7. [🗺️ Архитектура](#️-архитектура)
-   - 7.1 [`teleoperation.launch.py`](#ros2-launch-completed_scripts_teleoperation-teleoperationlaunchpy)
-   - 7.2 [`teleoperation.launch.py enable_metrics:=True`](#ros2-launch-completed_scripts_teleoperation-teleoperationlaunchpy-enable_metricstrue)
+   - 7.1 [`teleoperation.launch.py`](#teleoperationlaunchpy)
+   - 7.2 [`teleoperation.launch.py enable_metrics:=True`](#teleoperationlaunchpy-enable_metricstrue)
 8. [Лицензия](#лицензия)
 9. [Предложения и корректировки](#предложения-и-корректировки)
 
@@ -274,12 +274,12 @@ ukt_library
 Здесь представлены скрины из rqt_graph при различных запущенных сценариях.
 
 Для удобства анализа в топикам и нодам были добавлены префиксы, которые определяют принадлежность к некоторой группе. Также стоит отметить, что названия некоторых нод тоже в launch-файлах были изменены для удобства.
-### `ros2 launch completed_scripts_teleoperation teleoperation.launch.py`
+### `teleoperation.launch.py`
 ![teleoperation_launch](docs/teleoperation.png)
 
 <p align="right" style="margin-top: 20px;"><a href="#оглавление" style="text-decoration: none;">🔝 Вернуться к оглавлению</a></p>
 
-### `ros2 launch completed_scripts_teleoperation teleoperation.launch.py enable_metrics:=True`
+### `teleoperation.launch.py enable_metrics:=True`
 ![teleoperation_with_metrics_launch](docs/teleoperation_with_metrics.png)
 
 <p align="right" style="margin-top: 20px;"><a href="#оглавление" style="text-decoration: none;">🔝 Вернуться к оглавлению</a></p>
