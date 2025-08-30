@@ -12,17 +12,17 @@ from launch.conditions import IfCondition
 
 
 def generate_metrics_nodes(context):
-    """Динамически создает узлы для каждого сустава"""
+    """Dynamically creates nodes for each joint"""
     nodes_and_msg = []
     
-    # Получаем значение параметра
+    # get arguments
     joints_str = context.launch_configurations.get('joints_to_check', '12, 13, 14, 15, 31, 33')
     enable_metrics = context.launch_configurations.get('enable_metrics', 'False')
     
-    # Парсим строку с суставами
+    # parse string with joints
     joints_list = [int(x.strip()) for x in joints_str.split(',') if x.strip()]
     
-    # Создаем узлы только если метрики включены
+    # creating nodes if metrics are enabled
     if enable_metrics == 'True':
         for joint in joints_list:
             if joint == 9 or joint > 33 or joint < 0:
