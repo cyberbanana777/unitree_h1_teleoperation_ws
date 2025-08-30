@@ -29,8 +29,8 @@ from std_msgs.msg import String
 from ukt_library import convert_from_ukt_to_rad
 
 # ==================== CONSTANTS AND CONFIGURATIONS ====================
-TOPIC_PUBLISH = "UKT_data_rad"
-TOPIC_SUBSCRIBE = "UKT_bare_data"
+TOPIC_PUBLISH = "data/rad"
+TOPIC_SUBSCRIBE = 'data/bare'
 FREQUENCY = 333.3  # Operating frequency in Hz
 DEFAULT_SCALING = 0.1  # Default scaling parameter
 

@@ -5,9 +5,9 @@
 import numpy as np
 from h1_info_library import LIMITS_OF_JOINTS_WITH_HANDS_FOR_TELEOPERATION
 
-from .limits import LIMITS_OF_JOINTS_UKT
-from .mapping import MAPPING_FOR_JOINTS_FROM_UKT_TO_UNITREE_H1
-from .normalize_values import JOINT_CONVERSION_COEFFICIENTS
+from ukt_library.limits import LIMITS_OF_JOINTS_UKT
+from ukt_library.mapping import MAPPING_FOR_JOINTS_FROM_UKT_TO_UNITREE_H1
+from ukt_library.normalize_values import JOINT_CONVERSION_COEFFICIENTS
 
 
 def map_range(

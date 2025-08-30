@@ -36,8 +36,8 @@ from std_msgs.msg import Float32, String
 from unitree_go.msg import LowState, MotorStates
 
 # ==================== CONSTANTS ====================
-TOPIC_PUBLISH_GROUP = "plotjuggler/joint_"
-TOPIC_SUBSCRIBE = "UKT_data_rad"
+TOPIC_PUBLISH_GROUP = "joint_"
+TOPIC_SUBSCRIBE = "data/rad"
 FREQUENCY = 333.3  # Monitoring frequency in Hz
 JOINT_NUM = 16  # Default joint to check: left_shoulder_roll
 QUEUE_SIZE = 10

@@ -27,7 +27,7 @@ from std_msgs.msg import String
 
 from ukt_library import convert_from_ukt_to_unitree_h1
 
-TOPIC_SUBSCRIBE = "UKT_bare_data"
+TOPIC_SUBSCRIBE = "data/bare"
 TOPIC_PUBLISH = "positions_to_unitree"
 FREQUENCY = 333.3  # Monitoring frequency in Hertz
 

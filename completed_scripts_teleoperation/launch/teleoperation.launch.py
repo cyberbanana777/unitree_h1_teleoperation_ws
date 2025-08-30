@@ -16,7 +16,7 @@ def generate_metrics_nodes(context):
     nodes_and_msg = []
     
     # Получаем значение параметра
-    joints_str = context.launch_configurations.get('joints_to_check', '12, 13, 14, 15, 23, 31')
+    joints_str = context.launch_configurations.get('joints_to_check', '12, 13, 14, 15, 31, 33')
     enable_metrics = context.launch_configurations.get('enable_metrics', 'False')
     
     # Парсим строку с суставами
@@ -35,7 +35,17 @@ def generate_metrics_nodes(context):
                         package="extractor_package",
                         executable="extractor_node",
                         name=f"extarctor_node_{joint}",
-                        parameters=[{"H1_joint_num": joint}]
+                        namespace='metrics',
+                        parameters=[{"H1_joint_num": joint}],
+                        remappings=[
+                            ('wrists/state', '/wrists/state'),
+                            ('inspire/state', '/inspire/state'),
+                            ('lowstate', '/lowstate'),
+                            ('data/rad', '/UKT/data/rad'),
+                            (f'joint_{joint}/UKT', f'joint_{joint}/UKT'),
+                            (f'joint_{joint}/H1', f'joint_{joint}/H1'),
+                        ],
+    
                     )
                 )
     
@@ -53,7 +63,7 @@ def generate_launch_description():
 
     joints_to_check_arg = DeclareLaunchArgument(
         "joints_to_check",
-        default_value="12, 13, 14, 15, 23, 31",
+        default_value='12, 13, 14, 15, 31, 33',
         description="Joints to check. Valided joints must " \
         "be in range [0, 33], excluding 9.",
     )
@@ -68,19 +78,36 @@ def generate_launch_description():
     repeater_node = Node(
         package="repeater_package",
         executable="repeater_node",
-        parameters=[{"ip": LaunchConfiguration('ip')}]
+        name="udp_repeater_node",
+        namespace='UKT',
+        parameters=[{"ip": LaunchConfiguration('ip')}],
+        remappings=[
+            ('data/bare', 'data/bare'),
+        ],
     )
 
     converter_to_h1_node = Node(
         package="converter_from_ukt_to_h1_package",
         executable="converter_from_ukt_to_h1_node",
+        name="converter_to_h1_node",
+        namespace='UKT',
+        remappings=[
+            ('data/bare', 'data/bare'),
+            ('positions_to_unitree', '/positions_to_unitree'),
+        ],
+
     ) 
 
-    
     converter_to_rad_node = Node(
             package="converter_angles_ukt_into_rad_package",
             executable="converter_angles_ukt_into_rad_node",
+            name='converter_angles_into_rad_node',
+            namespace='UKT',
             condition=IfCondition(LaunchConfiguration('enable_metrics')),
+        remappings=[
+            ('data/bare', 'data/bare'),
+            ('positions_to_unitree', '/positions_to_unitree'),
+        ],
         )
 
     # Create nodes (metrics)
