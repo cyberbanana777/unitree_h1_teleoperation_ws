@@ -13,8 +13,8 @@
 5. [Кастомные библиотеки](#кастомные-библиотеки)
    - 5.1 [`ukt_library`](#ukt_library)
 6. [📡 Интерфейс (топики, сервисы, действия, параметры)](#-интерфейс-топики-сервисы-действия-параметры)
-   - 6.1 [Пакет 1: `converter_angles_ukt_into_rad_node`](#пакет-1-converter_angles_ukt_into_rad_node)
-   - 6.2 [Пакет 2: `converter_angles_ukt_into_rad_node`](#пакет-2-converter_angles_ukt_into_rad_node)
+   - 6.1 [Пакет 1: `converter_angles_ukt_into_rad_package`](#пакет-1-converter_angles_ukt_into_rad_package)
+   - 6.2 [Пакет 2: `converter_from_ukt_to_h1_package`](#пакет-2-`converter_from_ukt_to_h1_package)
    - 6.3 [Пакет 3: `extractor_package`](#пакет-3-extractor_package)
    - 6.4 [Пакет 4: `repeater_package`](#пакет-4-repeater_package)
 7. [🗺️ Архитектура](#️-архитектура)
@@ -212,7 +212,7 @@ ukt_library
 
 ## 📡 Интерфейс (топики, сервисы, действия, параметры)
 Спецификация API пакетов.
-### **Пакет 1: `converter_angles_ukt_into_rad_node`**
+### **Пакет 1: `converter_angles_ukt_into_rad_package`**
 #### **Узел: `converter_angles_ukt_into_rad_node`**
 - **Рабочие топики:**
 
@@ -229,7 +229,7 @@ ukt_library
 
 <p align="right" style="margin-top: 20px;"><a href="#оглавление" style="text-decoration: none;">🔝 Вернуться к оглавлению</a></p>
 
-### **Пакет 2: `converter_angles_ukt_into_rad_node`**
+### **Пакет 2: `converter_from_ukt_to_h1_package`**
 #### **Узел: `converter_from_ukt_to_h1_node`**
 - **Рабочие топики:**
 
