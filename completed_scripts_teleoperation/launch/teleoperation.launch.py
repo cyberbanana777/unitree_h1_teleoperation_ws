@@ -38,7 +38,7 @@ def generate_metrics_nodes(context):
                         namespace='metrics',
                         parameters=[{"H1_joint_num": joint}],
                         remappings=[
-                            ('wrists/state', '/wrists/state'),
+                            ('wrist/states', '/wrist/states'),
                             ('inspire/state', '/inspire/state'),
                             ('lowstate', '/lowstate'),
                             ('data/rad', '/UKT/data/rad'),

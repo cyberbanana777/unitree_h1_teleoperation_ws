@@ -90,7 +90,7 @@ class JointMonitorNode(Node):
         elif self.joint_num == 32 or self.joint_num == 33:  # Wrists joints:
             self.offset = 32
             self.msg_type = MotorStates
-            self.target_topic = "wrists/state"
+            self.target_topic = "wrist/states"
 
         self.sub = self.create_subscription(
             self.msg_type, self.target_topic, self.h1_callback, QUEUE_SIZE
